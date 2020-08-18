@@ -26,6 +26,8 @@
 
 package leetcode.editor.cn;
 
+import java.util.HashMap;
+
 class LongestSubstringWithoutRepeatingCharacters {
     public static void main(String[] args) {
         Solution solution = new LongestSubstringWithoutRepeatingCharacters().new Solution();
@@ -34,7 +36,19 @@ class LongestSubstringWithoutRepeatingCharacters {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int lengthOfLongestSubstring(String s) {
-            return 0;
+            int answer = 0;
+            HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+            for(int start = 0,end =0;end<s.length();end++){
+                if(map.containsKey(s.charAt(end))){
+                    start = Math.max(map.get(s.charAt(end)),start);
+                }
+                answer = Math.max(answer,end-start+1);
+
+                //这里之所以用end+1，是为了当start向前移的时候，可以直接跳过重复的char
+                //如果直接用end,会导致，前面answer的计算，等于0，或者当start一直为0时，是比真实的answer小一个的
+                map.put(s.charAt(end),end+1);
+            }
+            return answer;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
