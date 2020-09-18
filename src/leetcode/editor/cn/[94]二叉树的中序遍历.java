@@ -74,6 +74,31 @@ class BinaryTreeInorderTraversal {
 
             return answer;
         }
+
+        public List<Integer> inorderTraversal3(TreeNode root){
+            while (root!=null){
+                if(root.left!=null){
+                    TreeNode presenter = root.left;
+                    while (presenter.right!=null && presenter.right!=root){
+                        presenter = presenter.right;
+                    }
+
+                    if(presenter.right==null){
+                        presenter.right = root;
+                        root = root.left;
+                    }else {
+                        answer.add(root.val);
+                        presenter.right = null;
+                        root = root.right;
+                    }
+                }else {
+                    answer.add(root.val);
+                    root = root.right;
+                }
+            }
+
+            return answer;
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
