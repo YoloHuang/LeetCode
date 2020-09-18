@@ -78,6 +78,39 @@ class ValidateBinarySearchTree {
             return true;
         }
 
+        //用morris遍历求出中序遍历，然后看是否是升序
+        public boolean isValidBST1(TreeNode root) {
+            double min = -Double.MAX_VALUE;
+            while (root!=null){
+                if(root.left!=null){
+                    TreeNode presenter = root.left;
+                    while (presenter.right!=null && presenter.right!=root){
+                        presenter = presenter.right;
+                    }
+                    if(presenter.right == null){
+                        presenter.right = root;
+                        root = root.left;
+                    }else {
+                        presenter.right = null;
+                        if(root.val>min){
+                            min = root.val;
+                            root = root.right;
+                        }else {
+                            return false;
+                        }
+                    }
+                }else {
+                    if(root.val>min){
+                        min = root.val;
+                        root = root.right;
+                    }else {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         //递归方法
 
         public boolean isValidBST2(TreeNode root){
