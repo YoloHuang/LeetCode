@@ -44,6 +44,7 @@ class MaximumDepthOfBinaryTree {
         //BFS 广度优先搜索方法。时间1ms
         public int maxDepth(TreeNode root) {
             int answer = 0;
+            //先进先出
             Queue<TreeNode> queue = new LinkedList<>();
             if(root==null) return answer;
             queue.offer(root);
