@@ -57,32 +57,34 @@ class ConvertSortedListToBinarySearchTree {
         //方法1，转换为list后，直接去中间值
         public TreeNode sortedListToBST(ListNode head) {
             List<Integer> list = new ArrayList<>();
-            while (head!=null){
+            while (head != null) {
                 list.add(head.val);
                 head = head.next;
             }
-            return getNode(list,0,list.size()-1);
+            return getNode(list, 0, list.size() - 1);
         }
 
-        private TreeNode getNode(List<Integer> list,int start,int end) {
-            if(start>end){return null;}
-            int center = start+(end-start)/2;
+        private TreeNode getNode(List<Integer> list, int start, int end) {
+            if (start > end) {
+                return null;
+            }
+            int center = start + (end - start) / 2;
             TreeNode node = new TreeNode(list.get(center));
-            node.left = getNode(list,start,center-1);
-            node.right = getNode(list,center+1,end);
+            node.left = getNode(list, start, center - 1);
+            node.right = getNode(list, center + 1, end);
             return node;
         }
 
         //方法2  快慢指针法
         public TreeNode sortedListToBST2(ListNode head) {
-            if(head==null){
+            if (head == null) {
                 return null;
             }
-            if(head.next == null){
+            if (head.next == null) {
                 return new TreeNode(head.val);
             }
-            ListNode slow = head,quick = head,center = null;
-            while (quick!=null&& quick.next!=null){
+            ListNode slow = head, quick = head, center = null;
+            while (quick != null && quick.next != null) {
                 center = slow;
                 slow = slow.next;
                 quick = quick.next.next;
@@ -98,8 +100,6 @@ class ConvertSortedListToBinarySearchTree {
 
     }
 //leetcode submit region end(Prohibit modification and deletion)
-
-
 
 
 }

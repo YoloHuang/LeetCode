@@ -36,62 +36,63 @@ package leetcode.editor.cn;
 import java.util.LinkedList;
 import java.util.Queue;
 
-class MinimumDepthOfBinaryTree{
+class MinimumDepthOfBinaryTree {
     public static void main(String[] args) {
         Solution solution = new MinimumDepthOfBinaryTree().new Solution();
     }
-    
+
     //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
 
-    //思路与最大深度差不多，只不过中间提前判断当前节点是否是最小深度
-    public int minDepth(TreeNode root) {
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
+     * }
+     */
+    class Solution {
 
-        int answer = 0;
-        if(root == null){
-            return answer;
-        }
-        Queue<TreeNode> list = new LinkedList<>();
-        list.offer(root);
-        while (!list.isEmpty()){
-            int length = list.size();
-            for (int i = 0; i < length; i++) {
-                TreeNode node =  list.poll();
-                if(node.right ==null && node.left == null){
-                    return answer+1;
-                }
-                if(node.left!=null){
-                    list.offer(node.left);
-                }
-                if(node.right !=null){
-                    list.offer(node.right);
-                }
+        //思路与最大深度差不多，只不过中间提前判断当前节点是否是最小深度
+        public int minDepth(TreeNode root) {
+
+            int answer = 0;
+            if (root == null) {
+                return answer;
             }
-            answer+=1;
+            Queue<TreeNode> list = new LinkedList<>();
+            list.offer(root);
+            while (!list.isEmpty()) {
+                int length = list.size();
+                for (int i = 0; i < length; i++) {
+                    TreeNode node = list.poll();
+                    if (node.right == null && node.left == null) {
+                        return answer + 1;
+                    }
+                    if (node.left != null) {
+                        list.offer(node.left);
+                    }
+                    if (node.right != null) {
+                        list.offer(node.right);
+                    }
+                }
+                answer += 1;
+            }
+            return answer;
+
         }
-        return answer;
+
+        //递归，递归的思路就是，找到子节点的最小深度，然后+1
 
     }
-
-    //递归，递归的思路就是，找到子节点的最小深度，然后+1
-
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
-  
+
 }

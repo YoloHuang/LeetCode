@@ -18,43 +18,45 @@
 // 👍 665 👎 0
 
 package leetcode.editor.cn;
-class ConvertSortedArrayToBinarySearchTree{
+
+class ConvertSortedArrayToBinarySearchTree {
     public static void main(String[] args) {
         Solution solution = new ConvertSortedArrayToBinarySearchTree().new Solution();
     }
-    
-    //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public TreeNode sortedArrayToBST(int[] nums) {
-        if(nums == null || nums.length == 0){
-            return null;
-        }
-        int length = nums.length;
-        return getNode(nums,0,length);
-    }
 
-    private TreeNode getNode(int[] nums, int start, int length) {
-        if(length<=0){
-            return null;
+    //leetcode submit region begin(Prohibit modification and deletion)
+
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
+        public TreeNode sortedArrayToBST(int[] nums) {
+            if (nums == null || nums.length == 0) {
+                return null;
+            }
+            int length = nums.length;
+            return getNode(nums, 0, length);
         }
-        TreeNode treeNode = new TreeNode();
-        int center = start + length/2;
-        treeNode.val = nums[center];
-        treeNode.left = getNode(nums,start,length/2);
-        treeNode.right = getNode(nums,center+1,length-length/2-1);
-        return treeNode;
+
+        private TreeNode getNode(int[] nums, int start, int length) {
+            if (length <= 0) {
+                return null;
+            }
+            TreeNode treeNode = new TreeNode();
+            int center = start + length / 2;
+            treeNode.val = nums[center];
+            treeNode.left = getNode(nums, start, length / 2);
+            treeNode.right = getNode(nums, center + 1, length - length / 2 - 1);
+            return treeNode;
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
-  
+
 }

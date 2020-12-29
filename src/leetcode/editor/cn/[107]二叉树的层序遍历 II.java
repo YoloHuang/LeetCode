@@ -30,49 +30,50 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-class BinaryTreeLevelOrderTraversalIi{
+class BinaryTreeLevelOrderTraversalIi {
     public static void main(String[] args) {
         Solution solution = new BinaryTreeLevelOrderTraversalIi().new Solution();
     }
-    
+
     //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution {
-    //思路与102相同，这里是倒序遍历，那么就用链表的形式，在头部添加list
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
 
-        List<List<Integer>> answer = new LinkedList<>();
-        if (root == null) return answer;
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        while (!queue.isEmpty()){
-            int length = queue.size();
-            List<Integer> list = new ArrayList<>();
-            for (int i = 0; i < length; i++) {
-                TreeNode node = queue.poll();
-                list.add(node.val);
-                if(node.left!=null){
-                    queue.offer(node.left);
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
+        //思路与102相同，这里是倒序遍历，那么就用链表的形式，在头部添加list
+        public List<List<Integer>> levelOrderBottom(TreeNode root) {
+
+            List<List<Integer>> answer = new LinkedList<>();
+            if (root == null) return answer;
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.offer(root);
+            while (!queue.isEmpty()) {
+                int length = queue.size();
+                List<Integer> list = new ArrayList<>();
+                for (int i = 0; i < length; i++) {
+                    TreeNode node = queue.poll();
+                    list.add(node.val);
+                    if (node.left != null) {
+                        queue.offer(node.left);
+                    }
+                    if (node.right != null) {
+                        queue.offer(node.right);
+                    }
                 }
-                if(node.right!=null){
-                    queue.offer(node.right);
-                }
+                answer.add(0, list);
             }
-            answer.add(0,list);
-        }
-        return answer;
+            return answer;
 
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
-  
+
 }

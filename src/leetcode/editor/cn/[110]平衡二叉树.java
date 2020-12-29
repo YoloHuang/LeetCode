@@ -41,48 +41,50 @@
 // 👍 552 👎 0
 
 package leetcode.editor.cn;
-class BalancedBinaryTree{
+
+class BalancedBinaryTree {
     public static void main(String[] args) {
         Solution solution = new BalancedBinaryTree().new Solution();
     }
-    
-    //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
-    public boolean isBalanced(TreeNode root) {
-        return getDeep(root)>=0;
-    }
 
-    public int getDeep(TreeNode node){
-        if(node ==null){
-            return 0;
+    //leetcode submit region begin(Prohibit modification and deletion)
+
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
+     * }
+     */
+    class Solution {
+        public boolean isBalanced(TreeNode root) {
+            return getDeep(root) >= 0;
         }
-        int leftDeep = getDeep(node.left);
-        if(leftDeep ==-1){
-            return -1;
+
+        public int getDeep(TreeNode node) {
+            if (node == null) {
+                return 0;
+            }
+            int leftDeep = getDeep(node.left);
+            if (leftDeep == -1) {
+                return -1;
+            }
+            int rightDeep = getDeep(node.right);
+            if (rightDeep == -1 || Math.abs(leftDeep - rightDeep) > 1) {
+                return -1;
+            }
+            return Math.max(leftDeep, rightDeep) + 1;
         }
-        int rightDeep = getDeep(node.right);
-        if(rightDeep == -1 || Math.abs(leftDeep-rightDeep)>1){
-            return -1;
-        }
-        return Math.max(leftDeep,rightDeep)+1;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
-  
+
 }
