@@ -69,14 +69,14 @@ class KthSmallestElementInABst {
         List<Integer> answer = new ArrayList<>();
 
         //用栈的方式存储还没有打印的节点
-        public List<Integer> inorderTraversal(TreeNode root){
+        public List<Integer> inorderTraversal(TreeNode root) {
             LinkedList<TreeNode> save = new LinkedList<>();
             TreeNode node = root;
-            while (node!=null || !save.isEmpty()){
-                if(node!=null){
+            while (node != null || !save.isEmpty()) {
+                if (node != null) {
                     save.push(node);
                     node = node.left;
-                }else {
+                } else {
                     TreeNode treeNode = save.pop();
                     answer.add(treeNode.val);
                     node = treeNode.right;
@@ -90,13 +90,13 @@ class KthSmallestElementInABst {
         //迭代方法
         public int kthSmallest2(TreeNode root, int k) {
             Stack<TreeNode> stack = new Stack<>();
-            while (true){
-                while (root!=null){
+            while (true) {
+                while (root != null) {
                     stack.push(root);
                     root = root.left;
                 }
                 root = stack.pop();
-                if(--k==0) return root.val;
+                if (--k == 0) return root.val;
                 root = root.right;
             }
         }

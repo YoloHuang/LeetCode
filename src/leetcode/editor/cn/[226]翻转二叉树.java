@@ -26,50 +26,52 @@
 // 👍 724 👎 0
 
 package leetcode.editor.cn;
-class InvertBinaryTree{
+
+class InvertBinaryTree {
     public static void main(String[] args) {
         Solution solution = new InvertBinaryTree().new Solution();
     }
-    
+
     //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution {
 
-    //简单的递归
-    public TreeNode invertTree(TreeNode root) {
-        if(root==null){
-            return null;
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
+
+        //简单的递归
+        public TreeNode invertTree(TreeNode root) {
+            if (root == null) {
+                return null;
+            }
+
+            invert(root);
+
+
+            return root;
+
         }
 
-        invert(root);
+        private void invert(TreeNode root) {
+            if (root != null) {
+                TreeNode save = root.left;
+                root.left = root.right;
+                root.right = save;
 
-
-        return root;
-
-    }
-
-    private void invert(TreeNode root) {
-        if(root!=null){
-            TreeNode save = root.left;
-            root.left = root.right;
-            root.right = save;
-
-            invert(root.left);
-            invert(root.right);
+                invert(root.left);
+                invert(root.right);
+            }
         }
+
+
     }
-
-
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
-  
+
 }

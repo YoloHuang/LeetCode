@@ -41,20 +41,20 @@ class BinaryTreeRightSideView {
     class Solution {
         public List<Integer> rightSideView(TreeNode root) {
             List<Integer> answer = new ArrayList<>();
-            if(root == null){
+            if (root == null) {
                 return answer;
             }
             Queue<TreeNode> queue = new LinkedList<>();
             queue.offer(root);
-            while (!queue.isEmpty()){
+            while (!queue.isEmpty()) {
                 TreeNode node = null;
                 int size = queue.size();
                 for (int i = 0; i < size; i++) {
                     node = queue.poll();
-                    if(node.left!=null){
+                    if (node.left != null) {
                         queue.offer(node.left);
                     }
-                    if(node.right!=null){
+                    if (node.right != null) {
                         queue.offer(node.right);
                     }
                 }
